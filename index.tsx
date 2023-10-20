@@ -22,12 +22,12 @@ function processUserGroups(userGroups: string[]): string[] {
     
     let optionsUserGroups = userGroups.filter(x => !(x.includes(".Base") || x.includes(".Role")));
 
-    if (optionsUserGroups.includes("DML.Consumer.RCPS")) {
+    if (optionsUserGroups.includes("CH.Consumer.RCPS")) {
         optionsUserGroups = optionsUserGroups.filter(value => value !== "DML.Consumer.Base");
     }
 
     const userGroupsMapped = optionsUserGroups.map(value => {
-        const newValue = value.replace(/Dml|DML\./g, "");
+        const newValue = value.replace(/ch|CH\./g, "");
         return newValue ? newValue.replace(".", " ") : value;
     });
 
@@ -56,7 +56,7 @@ function createDropdownMenu() {
 function appendUserGroupsToMenu(dropdownMenu: HTMLElement, userGroups: string[]) {
     userGroups.forEach(group => {
         const anchor = document.createElement('a');
-        anchor.className = "mb-dropdownLink";
+        anchor.className = "ch-dropdownLink";
         anchor.href = "#";
         anchor.style.textDecoration = 'none';
         anchor.style.color = 'inherit';
@@ -64,7 +64,7 @@ function appendUserGroupsToMenu(dropdownMenu: HTMLElement, userGroups: string[])
         anchor.style.padding = '8px 15px';
         anchor.onmouseover = () => { anchor.style.backgroundColor = '#f5f5f5'; };
         anchor.onmouseout = () => { anchor.style.backgroundColor = ''; };
-        anchor.innerHTML = `<li class="m-icon m-icon-people mb-dropdownLink" style="margin-left:5px; margin-right:20px;"></li>${group}`;
+        anchor.innerHTML = `<li class="m-icon m-icon-people ch-dropdownLink" style="margin-left:5px; margin-right:20px;"></li>${group}`;
         dropdownMenu.appendChild(anchor);
     });
 }
